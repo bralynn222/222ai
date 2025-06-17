@@ -159,7 +159,7 @@ def build_ui():
         open(DATA_FILE, 'w').close()
 
     with gr.Blocks(theme=gr.themes.Default(), title="DPO Data Collector") as demo:
-        gr.Markdown("# 🤖 LLM Preference Collector (via API)")
+        gr.Markdown("# 🤖 LLM Preference Collector (via API) By Bralynn Matthew Tipps")
         gr.Markdown(
             "This UI connects to a running `text-generation-webui` backend. Launch the backend with the `--api` flag and load your model there first.")
 
