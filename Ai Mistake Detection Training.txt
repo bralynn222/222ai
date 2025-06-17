@@ -1,0 +1,78 @@
+This is a multi-layered study on:
+
+Dataset structure → adaptation quality
+
+Evaluation task → task performance ability 
+
+I'm researching the impact of fine-tuning LLMs to identify mistakes in outputs
+
+to see if it has a marginal impact on its ability to perform the related task it identifies the mistake in.Our prompt for the training v1 will be "list 10 sentences that end with the word apple"
+
+Low-level LLMs like LLaMA 3.2 3B seem to struggle with this, so it will serve as a good benchmark for us.
+
+
+Our first training run will consist of only 9 examples of the following example with various mistakes, all using the word apple. The reason for only 9 examples is to be a control variable; this way, we know the effects are from the direct quality of our training data rather than quantity. The reason we're only using the word apple is also the same.
+
+We need to learn the impact of each variable we can change in our dataset.
+
+Example-
+
+Input---
+
+The task was to list 10 sentences that end with the word apple. Did the following complete the task? If not, why? - Here are 10 sentences that end with the word "apple":
+
+The farmer carefully picked the juicy red apple.
+
+She sat under the tree eating a crunchy green apple.
+
+He took a big bite out of the sweet red apple.
+
+The child's favorite snack was a crunchy apple.
+
+The doctor recommended eating an apple a day for good health.
+
+The teacher brought in a basket of fresh apples.
+
+The fruit bowl was filled with a variety of delicious apples.
+
+He bought a big bag of apples from the market.
+
+The apple pie was the star of the dessert table.
+
+The store had a special deal on buying apples in bulk.
+
+Output----
+
+No, the list did not fully complete the task.
+
+Here's why:
+
+Sentence 5: "The doctor recommended eating an apple a day for good health." - This sentence ends with "health," not "apple."
+
+Sentence 6: "The teacher brought in a basket of fresh apples." - This sentence ends with "apples" (plural), not the singular "apple."
+
+Sentence 7: "The fruit bowl was filled with a variety of delicious apples." - This sentence ends with "apples" (plural), not the singular "apple."
+
+Sentence 8: "He bought a big bag of apples from the market." - This sentence ends with "market," not "apple."
+
+Sentence 9: "The apple pie was the star of the dessert table." - This sentence ends with "table," not "apple."
+
+Sentence 10: "The store had a special deal on buying apples in bulk." - This sentence ends with "bulk," not "apple."
+
+Only the first four sentences correctly end with the word "apple." The others either end with a different word or the plural "apples."
+
+
+After 60 epochs of our first dataset, the outputs seem to consist of saying they answer is wrong and providing inncorrect logic to back it up 100/100 times we asked .this is expected as a result, but our dataset is extremely simple. To expand on our data, we will now have several different words instead of just apple for each prompt. This will hopefully increase the quality of our data.
+
+
+note in md4 which adds a different style output for each trying to further remove patterns but this caused harmful effects in outputs study this
+
+
+We define high-quality training data for behavioral learning in LLMs as data that:
+
+Isolates the target behavior pattern (e.g., logical error evaluation)
+
+Minimizes unrelated regularities (e.g., repeated sentence counts, fixed word goal)
+
+Maximizes variation in task framing (structure, word choice, language, or style)
+
